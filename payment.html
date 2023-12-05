@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Optional: Your Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">Transaksi</h2>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="card-number">Jenis Transaksi</label>
+                        <input type="text" class="form-control" id="card-number" placeholder="Enter your card number" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="expiry-date">Pilih Bank Tujuan</label>
+                            <input type="text" class="form-control" id="" placeholder="" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="cvv">Masukan Rekening Tujuan</label>
+                            <input type="text" class="form-control" id="" placeholder="" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="card-holder">Masukan Nominal:</label>
+                        <input type="text" class="form-control" id="card-holder" placeholder="Enter the name on your card" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-block">Bayar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Optional: Your Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
