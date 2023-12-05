@@ -11,10 +11,8 @@
 	window.onload = function() {		
 		viewCategory();
 		viewDokter();
-		viewObat();
-		viewPasien();
-		viewPenyakit();
-		viewPoli();
+		viewPengguna();
+		viewDestinasi();
 		<?php
 			if ($this->session->flashdata('msg') != '') {
 				echo "effect_msg();";
@@ -248,6 +246,111 @@
 	
 	// end dokter film
 
+	//begin destinasi film
+	function viewDestinasi() {
+		$.get('<?php echo base_url('destinasi/tampil'); ?>', function(data) {
+			MyTable.fnDestroy();
+			$('#data-destinasi').html(data);
+			refresh();
+		});
+	}
+
+	var id_destinasi;
+	$(document).on("click", ".konfirmasiHapus-destinasi", function() {
+		id_destinasi = $(this).attr("data-id");
+	})
+	$(document).on("click", ".hapus-dataDestinasi", function() {
+		var id = id_destinasi;
+		
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('destinasi/delete'); ?>",
+			data: "id=" +id
+		})
+		.done(function(data) {
+			$('#konfirmasiHapus').modal('hide');
+			viewDestinasi();
+			$('.msg').html(data);
+			effect_msg();
+		})
+	})
+
+	$(document).on("click", ".update-dataDestinasi", function() {
+		var id = $(this).attr("data-id");
+		
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('destinasi/update'); ?>",
+			data: "id=" +id
+		})
+		.done(function(data) {
+			$('#tempat-modal').html(data);
+			$('#update-destinasi').modal('show');
+		})
+	})
+
+	$('#form-tambah-destinasi').submit(function(e) {
+		var data = $(this).serialize();
+
+		$.ajax({
+			method: 'POST',
+			url: '<?php echo base_url('destinasi/prosesTambah'); ?>',
+			data: data
+		})
+		.done(function(data) {
+			var out = jQuery.parseJSON(data);
+
+			viewDestinasi();
+			if (out.status == 'form') {
+				$('.form-msg').html(out.msg);
+				effect_msg_form();
+			} else {
+				document.getElementById("form-tambah-destinasi").reset();
+				$('#tambah-destinasi').modal('hide');
+				$('.msg').html(out.msg);
+				effect_msg();
+			}
+		})
+		
+		e.preventDefault();
+	});
+
+	$(document).on('submit', '#form-update-destinasi', function(e){
+		var data = $(this).serialize();
+
+		$.ajax({
+			method: 'POST',
+			url: '<?php echo base_url('destinasi/prosesUpdate'); ?>',
+			data: data
+		})
+		.done(function(data) {
+			var out = jQuery.parseJSON(data);
+
+			viewDestinasi();
+			if (out.status == 'form') {
+				$('.form-msg').html(out.msg);
+				effect_msg_form();
+			} else {
+				document.getElementById("form-update-destinasi").reset();
+				$('#update-destinasi').modal('hide');
+				$('.msg').html(out.msg);
+				effect_msg();
+			}
+		})
+		
+		e.preventDefault();
+	});
+
+	$('#tambah-destinasi').on('hidden.bs.modal', function () {
+	  $('.form-msg').html('');
+	})
+
+	$('#update-destinasi').on('hidden.bs.modal', function () {
+	  $('.form-msg').html('');
+	})
+	
+	// end destinasi film
+
 	//begin obat film
 	function viewObat() {
 		$.get('<?php echo base_url('obat/tampil'); ?>', function(data) {
@@ -353,67 +456,67 @@
 	
 	// end obat film
 
-	//begin pasien film
-	function viewPasien() {
-		$.get('<?php echo base_url('pasien/tampil'); ?>', function(data) {
+	//begin pengguna film
+	function viewPengguna() {
+		$.get('<?php echo base_url('pengguna/tampil'); ?>', function(data) {
 			MyTable.fnDestroy();
-			$('#data-pasien').html(data);
+			$('#data-pengguna').html(data);
 			refresh();
 		});
 	}
 
-	var id_pasien;
-	$(document).on("click", ".konfirmasiHapus-pasien", function() {
-		id_pasien = $(this).attr("data-id");
+	var id_pengguna;
+	$(document).on("click", ".konfirmasiHapus-pengguna", function() {
+		id_pengguna = $(this).attr("data-id");
 	})
-	$(document).on("click", ".hapus-dataPasien", function() {
-		var id = id_pasien;
+	$(document).on("click", ".hapus-dataPengguna", function() {
+		var id = id_pengguna;
 		
 		$.ajax({
 			method: "POST",
-			url: "<?php echo base_url('pasien/delete'); ?>",
+			url: "<?php echo base_url('pengguna/delete'); ?>",
 			data: "id=" +id
 		})
 		.done(function(data) {
 			$('#konfirmasiHapus').modal('hide');
-			viewPasien();
+			viewPengguna();
 			$('.msg').html(data);
 			effect_msg();
 		})
 	})
 
-	$(document).on("click", ".update-dataPasien", function() {
+	$(document).on("click", ".update-dataPengguna", function() {
 		var id = $(this).attr("data-id");
 		
 		$.ajax({
 			method: "POST",
-			url: "<?php echo base_url('pasien/update'); ?>",
+			url: "<?php echo base_url('pengguna/update'); ?>",
 			data: "id=" +id
 		})
 		.done(function(data) {
 			$('#tempat-modal').html(data);
-			$('#update-pasien').modal('show');
+			$('#update-pengguna').modal('show');
 		})
 	})
 
-	$('#form-tambah-pasien').submit(function(e) {
+	$('#form-tambah-pengguna').submit(function(e) {
 		var data = $(this).serialize();
 
 		$.ajax({
 			method: 'POST',
-			url: '<?php echo base_url('pasien/prosesTambah'); ?>',
+			url: '<?php echo base_url('pengguna/prosesTambah'); ?>',
 			data: data
 		})
 		.done(function(data) {
 			var out = jQuery.parseJSON(data);
 
-			viewPasien();
+			viewPengguna();
 			if (out.status == 'form') {
 				$('.form-msg').html(out.msg);
 				effect_msg_form();
 			} else {
-				document.getElementById("form-tambah-pasien").reset();
-				$('#tambah-pasien').modal('hide');
+				document.getElementById("form-tambah-pengguna").reset();
+				$('#tambah-pengguna').modal('hide');
 				$('.msg').html(out.msg);
 				effect_msg();
 			}
@@ -422,24 +525,24 @@
 		e.preventDefault();
 	});
 
-	$(document).on('submit', '#form-update-pasien', function(e){
+	$(document).on('submit', '#form-update-pengguna', function(e){
 		var data = $(this).serialize();
 
 		$.ajax({
 			method: 'POST',
-			url: '<?php echo base_url('pasien/prosesUpdate'); ?>',
+			url: '<?php echo base_url('pengguna/prosesUpdate'); ?>',
 			data: data
 		})
 		.done(function(data) {
 			var out = jQuery.parseJSON(data);
 
-			viewPasien();
+			viewPengguna();
 			if (out.status == 'form') {
 				$('.form-msg').html(out.msg);
 				effect_msg_form();
 			} else {
-				document.getElementById("form-update-pasien").reset();
-				$('#update-pasien').modal('hide');
+				document.getElementById("form-update-pengguna").reset();
+				$('#update-pengguna').modal('hide');
 				$('.msg').html(out.msg);
 				effect_msg();
 			}
@@ -448,15 +551,15 @@
 		e.preventDefault();
 	});
 
-	$('#tambah-pasien').on('hidden.bs.modal', function () {
+	$('#tambah-pengguna').on('hidden.bs.modal', function () {
 	  $('.form-msg').html('');
 	})
 
-	$('#update-pasien').on('hidden.bs.modal', function () {
+	$('#update-pengguna').on('hidden.bs.modal', function () {
 	  $('.form-msg').html('');
 	})
 	
-	// end pasien film
+	// end pengguna film
 
 	//begin penyakit film
 	function viewPenyakit() {

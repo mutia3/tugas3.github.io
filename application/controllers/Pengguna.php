@@ -1,48 +1,46 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Poli extends AUTH_Controller {
+class Pengguna extends AUTH_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('Poli_model','PM');
-		$this->load->model('Penyakit_model','AM');
+		$this->load->model('Pengguna_model','PM');
 	}
 
 	public function index() {
 		$data['userdata'] 	= $this->userdata;
-		$data['dataPenyakit'] 	= $this->AM->select_all();
-		$data['dataPoli'] 	= $this->PM->select_all();
+		$data['dataPengguna'] 	= $this->PM->select_all();
 
-		$data['page'] 		= "poli";
-		$data['judul'] 		= "Data Poli ";
-		$data['deskripsi'] 	= "Manage Data Poli";
+		$data['page'] 		= "pengguna";
+		$data['judul'] 		= "Data Pengguna ";
+		$data['deskripsi'] 	= "Manage Data Pengguna";
 
-		$data['modal_tambah_poli'] = show_my_modal('modals/modal_tambah_poli', 'tambah-poli', $data);
+		$data['modal_tambah_pengguna'] = show_my_modal('modals/modal_tambah_pengguna', 'tambah-pengguna', $data);
 
-		$this->template->views('poli/home', $data);
+		$this->template->views('pengguna/home', $data);
 	}
 
 	public function tampil() {
-		$data['dataPenyakit'] = $this->AM->select_all();
-		$data['dataPoli'] = $this->PM->select_all();
-		$this->load->view('poli/list_data', $data);
+		$data['dataPengguna'] = $this->PM->select_all();
+		$this->load->view('pengguna/list_data', $data);
 	}
 
 	public function prosesTambah() {
-		$this->form_validation->set_rules('nama_poli', 'Poli', 'trim|required');
-		$this->form_validation->set_rules('gedung', 'Gedung', 'trim|required');
-		$this->form_validation->set_rules('id_penyakit', 'ID_Penyakit', 'trim|required');
+		$this->form_validation->set_rules('nama_pengguna', 'Pengguna', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required');
+		$this->form_validation->set_rules('tanggal_lahir', 'Tanggal_Lahir', 'trim|required');
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
 			$result = $this->PM->insert($data);
 
 			if ($result > 0) {
 				$out['status'] = '';
-				$out['msg'] = show_succ_msg('Data Poli Successfully Added', '20px');
+				$out['msg'] = show_succ_msg('Data Pengguna Successfully Added', '20px');
 			} else {
 				$out['status'] = '';
-				$out['msg'] = show_err_msg('Data poli Failed Added', '20px');
+				$out['msg'] = show_err_msg('Data pengguna Failed Added', '20px');
 			}
 		} else {
 			$out['status'] = 'form';
@@ -55,26 +53,26 @@ class Poli extends AUTH_Controller {
 	public function update() {
 		$data['userdata'] 	= $this->userdata;
 		$id 				= trim($_POST['id']);
-		$data['dataPenyakit'] = $this->AM->select_all();
-		$data['dataPoli'] 	= $this->PM->select_by_id($id);
+		$data['dataPengguna'] 	= $this->PM->select_by_id($id);
 
-		echo show_my_modal('modals/modal_update_poli', 'update-poli', $data);
+		echo show_my_modal('modals/modal_update_pengguna', 'update-pengguna', $data);
 	}
 
 	public function prosesUpdate() {
-		$this->form_validation->set_rules('nama_poli', 'Poli', 'trim|required');
-		$this->form_validation->set_rules('gedung', 'Gedung', 'trim|required');
-		$this->form_validation->set_rules('id_penyakit', 'ID_Penyakit', 'trim|required');
+		$this->form_validation->set_rules('nama_pengguna', 'Pengguna', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required');
+		$this->form_validation->set_rules('tanggal_lahir', 'Tanggal_Lahir', 'trim|required');
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
 			$result = $this->PM->update($data);
 
 			if ($result > 0) {
 				$out['status'] = '';
-				$out['msg'] = show_succ_msg('Data Poli Successfully  Update', '20px');
+				$out['msg'] = show_succ_msg('Data Pengguna Successfully  Update', '20px');
 			} else {
 				$out['status'] = '';
-				$out['msg'] = show_succ_msg('Data Poli Failed Update', '20px');
+				$out['msg'] = show_succ_msg('Data pengguna Failed Update', '20px');
 			}
 		} else {
 			$out['status'] = 'form';
@@ -88,9 +86,9 @@ class Poli extends AUTH_Controller {
 		$result = $this->PM->delete($id);
 		
 		if ($result > 0) {
-			echo show_succ_msg('Data Poli Successfully Delete', '20px');
+			echo show_succ_msg('Data Pengguna Successfully Delete', '20px');
 		} else {
-			echo show_err_msg('Data Poli Successfully Failed', '20px');
+			echo show_err_msg('Data Pengguna Successfully Failed', '20px');
 		}
 	}
 
@@ -98,10 +96,10 @@ class Poli extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$id 				= trim($_POST['id']);
-		$data['poli'] = $this->PM->select_by_id($id);
-		$data['jumlahPoli'] = $this->PM->total_rows();
+		$data['obat'] = $this->PM->select_by_id($id);
+		$data['jumlahPengguna'] = $this->PM->total_rows();
 
-		echo show_my_modal('modals/modal_detail_poli', 'detail-poli', $data, 'lg');
+		echo show_my_modal('modals/modal_detail_pengguna', 'detail-pengguna', $data, 'lg');
 	}
 
 	public function export() {
@@ -116,24 +114,26 @@ class Poli extends AUTH_Controller {
 		$objPHPExcel->setActiveSheetIndex(0); 
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('A1', "ID"); 
-		$objPHPExcel->getActiveSheet()->SetCellValue('B1', "Nama Poli");
-		$objPHPExcel->getActiveSheet()->SetCellValue('C1', "Gedung");
-		$objPHPExcel->getActiveSheet()->SetCellValue('D1', "ID Penyakit");
+		$objPHPExcel->getActiveSheet()->SetCellValue('B1', "Nama Pengguna");
+		$objPHPExcel->getActiveSheet()->SetCellValue('C1', "Password");
+		$objPHPExcel->getActiveSheet()->SetCellValue('D1', "Email");
+		$objPHPExcel->getActiveSheet()->SetCellValue('E1', "Tanggal Lahir");
 
 		$rowCount = 2;
 		foreach($data as $value){
-		    $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $value->id_poli); 
-		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->nama_poli); 
-			$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $value->gedung); 
-			$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $value->id_penyakit); 
+		    $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $value->id_pengguna); 
+		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->nama_pengguna); 
+			$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $value->password);
+			$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $value->email);
+			$objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, $value->tanggal_lahir);
 		    $rowCount++; 
 		} 
 
 		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel); 
-		$objWriter->save('./assets/excel/Data poli.xlsx'); 
+		$objWriter->save('./assets/excel/Data Pengguna.xlsx'); 
 
 		$this->load->helper('download');
-		force_download('./assets/excel/Data poli.xlsx', NULL);
+		force_download('./assets/excel/Data pengguna.xlsx', NULL);
 	}
 
 	public function import() {
@@ -179,12 +179,12 @@ class Poli extends AUTH_Controller {
 				if (count($resultData) != 0) {
 					$result = $this->PM->insert_batch($resultData);
 					if ($result > 0) {
-						$this->session->set_flashdata('msg', show_succ_msg('Data Penyakit Successfully Import to database'));
-						redirect('poli');
+						$this->session->set_flashdata('msg', show_succ_msg('Data Pengguna Successfully Import to database'));
+						redirect('pengguna');
 					}
 				} else {
-					$this->session->set_flashdata('msg', show_msg('Data Penyakit failed import to database (Already update)', 'warning', 'fa-warning'));
-					redirect('poli');
+					$this->session->set_flashdata('msg', show_msg('Data pengguna failed import to database (Already update)', 'warning', 'fa-warning'));
+					redirect('pengguna');
 				}
 
 			}

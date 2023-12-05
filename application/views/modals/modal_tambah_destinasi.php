@@ -1,51 +1,44 @@
 <div class="col-md-offset-1 col-md-10 col-md-offset-1 well">
   <div class="form-msg"></div>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <h3 style="display:block; text-align:center;">Add Pasien</h3>
+  <h3 style="display:block; text-align:center;">Add Destinasi</h3>
 
-  <form id="form-tambah-pasien" method="POST">
+  <form id="form-tambah-destinasi" method="POST">
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-user"></i>
       </span>
-      <input type="text" class="form-control" placeholder="No Identitas" name="no_identitas" aria-describedby="sizing-addon2">
-    </div>
-    <div class="input-group form-group">
-      <span class="input-group-addon" id="sizing-addon2">
-        <i class="glyphicon glyphicon-user"></i>
-      </span>
-      <input type="text" class="form-control" placeholder="Nama Pasien" name="nama_pasien" aria-describedby="sizing-addon2">
+      <input type="text" class="form-control" placeholder="Nama Destinasi" name="nama_destinasi" aria-describedby="sizing-addon2">
     </div>
 	<div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-user"></i>
       </span>
-      <input type="text" class="form-control" placeholder="Jenis Kelamin" name="jenis_kelamin" aria-describedby="sizing-addon2">
+      <input type="text" class="form-control" placeholder="Deskripsi" name="deskripsi" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-user"></i>
       </span>
-      <input type="text" class="form-control" placeholder="Alamat" name="alamat" aria-describedby="sizing-addon2">
+      <input type="text" class="form-control" placeholder="Latitude" name="latitude" aria-describedby="sizing-addon2">
+    </div>
+	<div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-user"></i>
+      </span>
+      <input type="text" class="form-control" placeholder="Longitude" name="longitude" aria-describedby="sizing-addon2">
+    </div>
+	<div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <i class="glyphicon glyphicon-user"></i>
+      </span>
+      <input type="text" class="form-control" placeholder="Lokasi" name="lokasi" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-user"></i>
       </span>
-      <input type="text" class="form-control" placeholder="No Telpon" name="no_telp" aria-describedby="sizing-addon2">
-    </div>
-    <div class="input-group form-group">
-      <span class="input-group-addon" id="sizing-addon2">
-        <i class="glyphicon glyphicon-user"></i>
-      </span>
-      <!-- <input type="text" class="form-control" placeholder="Dokter ID" name="dokterid" aria-describedby="sizing-addon2"> -->
-       <select class="form-control" name="id_dokter">
-        <?php foreach ($dataDokter as $data ) {
-          ?>
-        <option value="<?=$data->id_dokter?>"><?=$data->nama_dokter;?></option>
-      <?php } ?>
-        
-      </select> 
+      <input type="text" class="form-control" placeholder="Foto" name="foto" aria-describedby="sizing-addon2">
     </div>
     <div class="form-group">
       <div class="col-md-12">

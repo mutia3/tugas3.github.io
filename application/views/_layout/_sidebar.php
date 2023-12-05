@@ -26,38 +26,38 @@
         </a>
       </li>
       
-      <li <?php if ($page == 'dokter') {echo 'class="active"';} ?>>
-        <a href="<?php echo base_url('Dokter'); ?>">
+      <li <?php if ($page == 'destinasi') {echo 'class="active"';} ?>>
+        <a href="<?php echo base_url('Destinasi'); ?>">
           <i class="fa fa-user"></i>
-          <span>Data Dokter</span>
+          <span>Data Destinasi</span>
         </a>
       </li>
 
       <li <?php if ($page == 'obat') {echo 'class="active"';} ?>>
         <a href="<?php echo base_url('Obat'); ?>">
           <i class="fa fa-bars"></i>
-          <span>Data Obat</span>
+          <span>Data Pemandu</span>
         </a>
       </li>
 
-      <li <?php if ($page == 'pasien') {echo 'class="active"';} ?>>
-        <a href="<?php echo base_url('Pasien'); ?>">
+      <li <?php if ($page == 'pengguna') {echo 'class="active"';} ?>>
+        <a href="<?php echo base_url('Pengguna'); ?>">
           <i class="fa fa-users"></i>
-          <span>Data Pasien</span>
+          <span>Data Pengguna</span>
         </a>
       </li>
 
       <li <?php if ($page == 'penyakit') {echo 'class="active"';} ?>>
         <a href="<?php echo base_url('Penyakit'); ?>">
           <i class="fa fa-heart"></i>
-          <span>Data Penyakit</span>
+          <span>Data Transaksi</span>
         </a>
       </li>
 
       <li <?php if ($page == 'poli') {echo 'class="active"';} ?>>
         <a href="<?php echo base_url('Poli'); ?>">
           <i class="fa fa-tag"></i>
-          <span>Data Poliklinik</span>
+          <span>Data Ulasan</span>
         </a>
       </li>
     </ul>
