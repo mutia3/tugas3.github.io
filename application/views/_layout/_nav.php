@@ -5,7 +5,7 @@
   </a>
   <!-- Navbar Right Menu -->
   <div class="navbar-custom-menu">
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav ">
       <!-- User Account Menu -->
       <li class="dropdown user user-menu">
         <!-- Menu Toggle Button -->
@@ -17,7 +17,7 @@
         </a>
         <ul class="dropdown-menu">
           <!-- The user image in the menu -->
-          <li class="user-header">
+          <li class="user-header ">
             <img src="<?php echo base_url(); ?>assets/img/<?php echo $userdata->foto; ?>" class="img-circle" alt="User Image">
 
             <p>

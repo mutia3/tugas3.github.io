@@ -47,15 +47,15 @@
         </a>
       </li>
 
-      <li <?php if ($page == 'penyakit') {echo 'class="active"';} ?>>
-        <a href="<?php echo base_url('Penyakit'); ?>">
+      <li <?php if ($page == 'transaksi') {echo 'class="active"';} ?>>
+        <a href="<?php echo base_url('Transaksi'); ?>">
           <i class="fa fa-heart"></i>
           <span>Data Transaksi</span>
         </a>
       </li>
 
-      <li <?php if ($page == 'poli') {echo 'class="active"';} ?>>
-        <a href="<?php echo base_url('Poli'); ?>">
+      <li <?php if ($page == 'ulasan') {echo 'class="active"';} ?>>
+        <a href="<?php echo base_url('Ulasan'); ?>">
           <i class="fa fa-tag"></i>
           <span>Data Ulasan</span>
         </a>

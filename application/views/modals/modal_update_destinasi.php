@@ -4,7 +4,7 @@
   <h3 style="display:block; text-align:center;">Update Data Destinasi</h3>
 
   <form id="form-update-destinasi" method="POST">
-    <input type="hidden" name="id_dokter" value="<?php echo $dataDestinasi->id_destinasi; ?>">
+    <input type="hidden" name="id_destinasi" value="<?php echo $dataDestinasi->id_destinasi; ?>">
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-user"></i>
