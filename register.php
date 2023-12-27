@@ -11,41 +11,41 @@
 </head>
 <body>
 <!-- Header -->
-<header class="bg-primary p-4 mb-4">
+<header class="bg-primary p-5 mb-4">
     <div class="container">
         <div class="col-md-15">
-            <h2 class="text-left text-white"><b>WISATA BUDAYA VIRTUAL NUSANTARA</b></h2>
+            <h2 class="text-left"><b><a href="index.php" role="button" class="text-white">WISATA BUDAYA VIRTUAL NUSANTARA</b></a></h2>
         </div>
     </div>
 </header>
 <!-- End Header -->
 
 <!-- Form Login -->
-<form class="col-md-3 mx-auto">
+<form class="col-md-4 mx-auto">
     <div class="text-center text-primary">
         <h2>Daftar</h2>
         <img src="img/register.jpg" alt="pict-login" width="150px" height="150px"><br>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 px-3">
         <label for="nama_pengguna" class="form-label"><b>Username</b></label>
         <input type="text" class="form-control" id="nama_pengguna">
     </div>
-    <div class="mb-3">
+    <div class="mb-3 px-3">
         <label for="password" class="form-label"><b>Password</b></label>
         <input type="password" class="form-control" id="password">
     </div>
-    <div class="mb-3">
+    <div class="mb-3 px-3">
         <label for="email" class="form-label"><b>Email</b></label>
         <input type="email" class="form-control" id="email">
     </div>
-    <div class="mb-3">
-        <label for="dob" class="form-label"><b>Password</b></label>
+    <div class="mb-3 px-3">
+        <label for="tanggal_lahir" class="form-label"><b>Tanggal Lahir</b></label>
         <input type="date" class="form-control" id="dob">
-    </div>
+    </div><br>
     <div class="text-center">
         <button type="submit" class="btn btn-primary"><a href="login.php" class="text-white">Daftar</a></button>
     </div>
-    <p class="text-right">
+    <p class="text-right px-3">
         Already have an account? <a href="login.php">Login now</a>
     </p>
     <div class="text-center">
