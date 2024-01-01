@@ -454,5 +454,110 @@
 	})
 	
 	// end pengguna film
+
+		//begin transaksi film
+		function viewTransaksi() {
+		$.get('<?php echo base_url('transaksi/tampil'); ?>', function(data) {
+			MyTable.fnDestroy();
+			$('#data-transaksi').html(data);
+			refresh();
+		});
+	}
+
+	var id_transaksi;
+	$(document).on("click", ".konfirmasiHapus-transaksi", function() {
+		id_transaksi = $(this).attr("data-id");
+	})
+	$(document).on("click", ".hapus-dataTransaksi", function() {
+		var id = id_transaksi;
+		
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('transaksi/delete'); ?>",
+			data: "id=" +id
+		})
+		.done(function(data) {
+			$('#konfirmasiHapus').modal('hide');
+			viewTransaksi();
+			$('.msg').html(data);
+			effect_msg();
+		})
+	})
+
+	$(document).on("click", ".update-dataTransaksi", function() {
+		var id = $(this).attr("data-id");
+		
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('transaksi/update'); ?>",
+			data: "id=" +id
+		})
+		.done(function(data) {
+			$('#tempat-modal').html(data);
+			$('#update-transaksi').modal('show');
+		})
+	})
+
+	$('#form-tambah-transaksi').submit(function(e) {
+		var data = $(this).serialize();
+
+		$.ajax({
+			method: 'POST',
+			url: '<?php echo base_url('transaksi/prosesTambah'); ?>',
+			data: data
+		})
+		.done(function(data) {
+			var out = jQuery.parseJSON(data);
+
+			viewTransaksi();
+			if (out.status == 'form') {
+				$('.form-msg').html(out.msg);
+				effect_msg_form();
+			} else {
+				document.getElementById("form-tambah-transaksi").reset();
+				$('#tambah-transaksi').modal('hide');
+				$('.msg').html(out.msg);
+				effect_msg();
+			}
+		})
+		
+		e.preventDefault();
+	});
+
+	$(document).on('submit', '#form-update-transaksi', function(e){
+		var data = $(this).serialize();
+
+		$.ajax({
+			method: 'POST',
+			url: '<?php echo base_url('transaksi/prosesUpdate'); ?>',
+			data: data
+		})
+		.done(function(data) {
+			var out = jQuery.parseJSON(data);
+
+			viewTransaksi();
+			if (out.status == 'form') {
+				$('.form-msg').html(out.msg);
+				effect_msg_form();
+			} else {
+				document.getElementById("form-update-transaksi").reset();
+				$('#update-transaksi').modal('hide');
+				$('.msg').html(out.msg);
+				effect_msg();
+			}
+		})
+		
+		e.preventDefault();
+	});
+
+	$('#tambah-transaksi').on('hidden.bs.modal', function () {
+	  $('.form-msg').html('');
+	})
+
+	$('#update-transaksi').on('hidden.bs.modal', function () {
+	  $('.form-msg').html('');
+	})
+	
+	// end transaksi film
 	
 </script>
