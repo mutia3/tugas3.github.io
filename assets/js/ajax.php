@@ -245,6 +245,111 @@
 	
 	// end destinasi film
 
+	//begin pemandu film
+	function viewPemandu() {
+		$.get('<?php echo base_url('pemandu/tampil'); ?>', function(data) {
+			MyTable.fnDestroy();
+			$('#data-pemandu').html(data);
+			refresh();
+		});
+	}
+
+	var id_pemandu;
+	$(document).on("click", ".konfirmasiHapus-pemandu", function() {
+		id_pemandu = $(this).attr("data-id");
+	})
+	$(document).on("click", ".hapus-dataPemandu", function() {
+		var id = id_pemandu;
+		
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('pemandu/delete'); ?>",
+			data: "id=" +id
+		})
+		.done(function(data) {
+			$('#konfirmasiHapus').modal('hide');
+			viewPemandu();
+			$('.msg').html(data);
+			effect_msg();
+		})
+	})
+
+	$(document).on("click", ".update-dataPemandu", function() {
+		var id = $(this).attr("data-id");
+		
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('pemandu/update'); ?>",
+			data: "id=" +id
+		})
+		.done(function(data) {
+			$('#tempat-modal').html(data);
+			$('#update-pemandu').modal('show');
+		})
+	})
+
+	$('#form-tambah-pemandu').submit(function(e) {
+		var data = $(this).serialize();
+
+		$.ajax({
+			method: 'POST',
+			url: '<?php echo base_url('pemandu/prosesTambah'); ?>',
+			data: data
+		})
+		.done(function(data) {
+			var out = jQuery.parseJSON(data);
+
+			viewPemandu();
+			if (out.status == 'form') {
+				$('.form-msg').html(out.msg);
+				effect_msg_form();
+			} else {
+				document.getElementById("form-tambah-pemandu").reset();
+				$('#tambah-pemandu').modal('hide');
+				$('.msg').html(out.msg);
+				effect_msg();
+			}
+		})
+		
+		e.preventDefault();
+	});
+
+	$(document).on('submit', '#form-update-pemandu', function(e){
+		var data = $(this).serialize();
+
+		$.ajax({
+			method: 'POST',
+			url: '<?php echo base_url('pemandu/prosesUpdate'); ?>',
+			data: data
+		})
+		.done(function(data) {
+			var out = jQuery.parseJSON(data);
+
+			viewPemandu();
+			if (out.status == 'form') {
+				$('.form-msg').html(out.msg);
+				effect_msg_form();
+			} else {
+				document.getElementById("form-update-pemandu").reset();
+				$('#update-pemandu').modal('hide');
+				$('.msg').html(out.msg);
+				effect_msg();
+			}
+		})
+		
+		e.preventDefault();
+	});
+
+	$('#tambah-pemandu').on('hidden.bs.modal', function () {
+	  $('.form-msg').html('');
+	})
+
+	$('#update-pemandu').on('hidden.bs.modal', function () {
+	  $('.form-msg').html('');
+	})
+	
+	// end pemandu film
+
 	//begin pengguna film
 	function viewPengguna() {
 		$.get('<?php echo base_url('pengguna/tampil'); ?>', function(data) {
