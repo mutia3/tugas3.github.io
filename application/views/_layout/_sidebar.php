@@ -33,8 +33,8 @@
         </a>
       </li>
 
-      <li <?php if ($page == 'obat') {echo 'class="active"';} ?>>
-        <a href="<?php echo base_url('Obat'); ?>">
+      <li <?php if ($page == 'pemandu') {echo 'class="active"';} ?>>
+        <a href="<?php echo base_url('Pemandu'); ?>">
           <i class="fa fa-bars"></i>
           <span>Data Pemandu</span>
         </a>

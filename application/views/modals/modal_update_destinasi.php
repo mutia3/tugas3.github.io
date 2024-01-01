@@ -39,7 +39,7 @@
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-user"></i>
       </span>
-      <input type="text" class="form-control" placeholder="Foto" name="foto" aria-describedby="sizing-addon2" value="<?php echo $dataDestinasi->foto; ?>">
+      <input type="file" class="form-control" placeholder="Foto" name="foto" aria-describedby="sizing-addon2" value="<?php echo $dataDestinasi->foto; ?>">
     </div>
     <div class="form-group">
       <div class="col-md-12">

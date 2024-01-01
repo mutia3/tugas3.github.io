@@ -27,7 +27,7 @@
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-user"></i>
       </span>
-      <input type="text" class="form-control" placeholder="Tanggal Lahir" name="tanggal_lahir" aria-describedby="sizing-addon2" value="<?php echo $dataPengguna->tanggal_lahir; ?>">
+      <input type="date" class="form-control" placeholder="Tanggal Lahir" name="tanggal_lahir" aria-describedby="sizing-addon2" value="<?php echo $dataPengguna->tanggal_lahir; ?>">
     </div>
     <div class="form-group">
       <div class="col-md-12">

@@ -3,7 +3,7 @@
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <h3 style="display:block; text-align:center;">Add Destinasi</h3>
 
-  <form id="form-tambah-destinasi" method="POST">
+  <form id="form-tambah-destinasi" method="POST" action="uplode" enctype="multipart/form-data">
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-user"></i>
@@ -38,7 +38,7 @@
       <span class="input-group-addon" id="sizing-addon2">
         <i class="glyphicon glyphicon-user"></i>
       </span>
-      <input type="text" class="form-control" placeholder="Foto" name="foto" aria-describedby="sizing-addon2">
+      <input type="file" class="form-control" placeholder="Foto" name="foto" aria-describedby="sizing-addon2">
     </div>
     <div class="form-group">
       <div class="col-md-12">
