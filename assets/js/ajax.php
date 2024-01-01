@@ -11,7 +11,10 @@
 	window.onload = function() {		
 		viewCategory();
 		viewDestinasi();
+		viewPemandu();
 		viewPengguna();
+		viewTransaksi();
+		viewUlasan();
 		<?php
 			if ($this->session->flashdata('msg') != '') {
 				echo "effect_msg();";
@@ -559,5 +562,110 @@
 	})
 	
 	// end transaksi film
+
+	//begin ulasan film
+	function viewUlasan() {
+		$.get('<?php echo base_url('ulasan/tampil'); ?>', function(data) {
+			MyTable.fnDestroy();
+			$('#data-ulasan').html(data);
+			refresh();
+		});
+	}
+
+	var id_ulasan;
+	$(document).on("click", ".konfirmasiHapus-ulasan", function() {
+		id_ulasan = $(this).attr("data-id");
+	})
+	$(document).on("click", ".hapus-dataUlasan", function() {
+		var id = id_ulasan;
+		
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('ulasan/delete'); ?>",
+			data: "id=" +id
+		})
+		.done(function(data) {
+			$('#konfirmasiHapus').modal('hide');
+			viewUlasan();
+			$('.msg').html(data);
+			effect_msg();
+		})
+	})
+
+	$(document).on("click", ".update-dataUlasan", function() {
+		var id = $(this).attr("data-id");
+		
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('ulasan/update'); ?>",
+			data: "id=" +id
+		})
+		.done(function(data) {
+			$('#tempat-modal').html(data);
+			$('#update-ulasan').modal('show');
+		})
+	})
+
+	$('#form-tambah-ulasan').submit(function(e) {
+		var data = $(this).serialize();
+
+		$.ajax({
+			method: 'POST',
+			url: '<?php echo base_url('ulasan/prosesTambah'); ?>',
+			data: data
+		})
+		.done(function(data) {
+			var out = jQuery.parseJSON(data);
+
+			viewUlasan();
+			if (out.status == 'form') {
+				$('.form-msg').html(out.msg);
+				effect_msg_form();
+			} else {
+				document.getElementById("form-tambah-ulasan").reset();
+				$('#tambah-ulasan').modal('hide');
+				$('.msg').html(out.msg);
+				effect_msg();
+			}
+		})
+		
+		e.preventDefault();
+	});
+
+	$(document).on('submit', '#form-update-ulasan', function(e){
+		var data = $(this).serialize();
+
+		$.ajax({
+			method: 'POST',
+			url: '<?php echo base_url('ulasan/prosesUpdate'); ?>',
+			data: data
+		})
+		.done(function(data) {
+			var out = jQuery.parseJSON(data);
+
+			viewUlasan();
+			if (out.status == 'form') {
+				$('.form-msg').html(out.msg);
+				effect_msg_form();
+			} else {
+				document.getElementById("form-update-ulasan").reset();
+				$('#update-ulasan').modal('hide');
+				$('.msg').html(out.msg);
+				effect_msg();
+			}
+		})
+		
+		e.preventDefault();
+	});
+
+	$('#tambah-ulasan').on('hidden.bs.modal', function () {
+	  $('.form-msg').html('');
+	})
+
+	$('#update-ulasan').on('hidden.bs.modal', function () {
+	  $('.form-msg').html('');
+	})
+	
+	// end ulasan film
 	
 </script>
